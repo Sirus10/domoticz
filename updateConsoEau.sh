@@ -42,6 +42,7 @@ SDEI_PASSWD=            # put your password here  ex:  SDEI_PASSWD=totolabrico42
 # Set your provider comment/uncomment if needed (default = SDEI)
 PROVIDER=SDEI
 #PROVIDER=SOGEST
+#PROVIDER=SENART
 
 # Your virtual device ID in domoticz (see step2 here http://domotique.web2diz.net/?p=138 )
 devicerowid=            #  put your devices idx here   ex : devicerowid=123
@@ -64,6 +65,10 @@ elif [[ $PROVIDER == 'SOGEST' ]]
 then
 	loginpage="https://www.sogest.info/mon-compte-en-ligne/connexion/validation"
 	datapage="https://www.sogest.info/mon-compte-en-ligne/statJData/$dateY/$dateM/$SDEI_CODE"
+elif [[ $PROVIDER == 'SENART' ]]
+then
+loginpage="https://www.eauxdesenart.com/mon-compte-en-ligne/connexion/validation"
+datapage="https://www.eauxdesenart.com/mon-compte-en-ligne/statJData/$dateY/$dateM/$SDEI_CODE"	
 fi
 
 
