@@ -3,6 +3,7 @@
 # This script will get the data from SDEI/SOGEST website and insert into domoticz.db
 # Site    : http://domotique.web2diz.net/
 # Detail  : http://domotique.web2diz.net/?p=131
+# List of working provider : http://domotique.web2diz.net/?p=320
 # Source  : https://github.com/Sirus10/domoticz/blob/master/updateConsoEau.sh
 # License : CC BY-SA 4.0
 #
