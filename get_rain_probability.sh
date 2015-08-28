@@ -2,6 +2,7 @@
 # This script will get weather date from wunderground API and then add the
 # propability of rain into domoticz % devices.
 # Site    : http://domotique.web2diz.net/
+# Details : http://domotique.web2diz.net/?p=392
 # Source  : https://github.com/Sirus10/domoticz/blob/master/get_rain_probability.sh
 # License : CC BY-SA 4.0
 #
