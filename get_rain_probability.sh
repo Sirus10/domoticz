@@ -1,4 +1,3 @@
-#!/usr/bin/ksh
 #######################################################################################
 # This script will get weather date from wunderground API and then add the
 # propability of rain into domoticz % devices.
