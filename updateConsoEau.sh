@@ -1,4 +1,3 @@
-#!/usr/bin/ksh
 #######################################################################################
 # This script will get the data from SDEI/SOGEST website and insert into domoticz.db
 # Site    : http://domotique.web2diz.net/
