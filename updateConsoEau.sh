@@ -51,6 +51,13 @@ devicerowid=            #  put your devices idx here   ex : devicerowid=123
 # Database file setup
 dbfile=/home/pi/domoticz/domoticz.db
 
+# You can setup a file setup_perso with your personnal settings
+if [ -s $workingDIR/setup_perso ]
+then
+echo -e "\n Using Configuration from file $workingDIR/setup_perso"
+. $workingDIR/setup_perso
+fi
+
 
 #######################################
 #
@@ -60,25 +67,23 @@ dbfile=/home/pi/domoticz/domoticz.db
 echo -e "\n - PART 1 Get the data from website for $dateY-$dateM"
 if [[ $PROVIDER == 'SDEI' ]]
 then
-	loginpage="https://www.lyonnaise-des-eaux.fr/mon-compte-en-ligne/connexion/validation"
-	datapage="https://www.lyonnaise-des-eaux.fr/mon-compte-en-ligne/statJData/$dateY/$dateM/$SDEI_CODE"
+        website="www.lyonnaise-des-eaux.fr"
 elif [[ $PROVIDER == 'SOGEST' ]]
 then
-	loginpage="https://www.sogest.info/mon-compte-en-ligne/connexion/validation"
-	datapage="https://www.sogest.info/mon-compte-en-ligne/statJData/$dateY/$dateM/$SDEI_CODE"
+        website="www.sogest.info"
 elif [[ $PROVIDER == 'SENART' ]]
 then
-loginpage="https://www.eauxdesenart.com/mon-compte-en-ligne/connexion/validation"
-datapage="https://www.eauxdesenart.com/mon-compte-en-ligne/statJData/$dateY/$dateM/$SDEI_CODE"	
+        website="www.eauxdesenart.com"
 fi
 
-
+loginpage="https://$website/mon-compte-en-ligne/connexion/validation"
+datapage="https://$website/mon-compte-en-ligne/statJData/$dateY/$dateM/$SDEI_CODE"
 export_file=$workingDIR/$dateY-$dateM.dat
 
 # This first cmd will allow to connect to the site and get the cookiefile
-curl -s $loginpage -c $workingDIR/cookiefile -d "input_mail=$SDEI_EMAIL&input_password=$SDEI_PASSWD" > /dev/null
+# curl -s $loginpage -c $workingDIR/cookiefile -d "input_mail=$SDEI_EMAIL&input_password=$SDEI_PASSWD" > /dev/null
 # This second cmd will download the data
-curl -s $datapage -b $workingDIR/cookiefile > $export_file
+# curl -s $datapage -b $workingDIR/cookiefile > $export_file
 
 echo -e "\n $export_file  generated "
 # Remove cookiefiles
@@ -87,19 +92,15 @@ rm $workingDIR/cookiefile
 
 #######################################
 #
-#
 #  PART 2 set the file to be usable
 #
 ######################################
 echo -e "\n - PART 2 Update .dat file  "
 
-sed -e 's/\\//g' $export_file > file1
-sed -e 's/\],\[/\n/g' file1 > file2
-sed -e 's/\[\[/\n/g' file2 > file3
+sed -e 's/\\//g'  -e 's/\],\[/\n/g' -e 's/\[\[/\n/g' -e 's/\]\]/\n/g'  $export_file > filetmp
+sed -e 's/\"//g' filetmp |grep -v ",0,0" |grep -e '^$' -v |grep -v ERR  > $export_file
 
-sed -e 's/\"//g' file3  |grep -v ",0,0" |grep -e '^$' -v |grep -v ERR  > $export_file
-
-rm file1 file2 file3
+rm filetmp
 echo -e "\n $export_file  Updated "
 
 
@@ -127,7 +128,7 @@ while read date val val2 ; do
 
 val1=$(( $val * 100))
 
-if [[ $val -eq 0 ]];
+if [[ $val -eq 0 ]] && [[ ! -z "$prevVal2" ]];
 then
           float val1=$((100 * ($val2-$prevVal2)))
 fi
