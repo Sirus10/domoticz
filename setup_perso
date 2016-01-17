@@ -1,0 +1,16 @@
+#SDEI PERSONAL CODE ( see http://domotique.web2diz.net/?p=137)
+SDEI_CODE=            # put your code here      ex:  SDEI_CODE=PLOLKIKU
+SDEI_EMAIL=           # put your email here     ex:  SDEI_EMAIL=toto@tata.com
+SDEI_PASSWD=          # put your password here  ex:  SDEI_PASSWD=totolabrico42
+
+# Set your provider comment/uncomment if needed (default = SDEI)
+PROVIDER=SDEI
+#PROVIDER=SOGEST
+#PROVIDER=SENART
+
+# Database file setup
+dbfile=/home/pi/domoticz/domoticz.db
+
+# Your virtual device ID in domoticz (see step2 here http://domotique.web2diz.net/?p=138 )
+devicerowid=          #  put your devices idx here   ex : devicerowid=123
+
