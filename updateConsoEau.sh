@@ -75,6 +75,10 @@ elif [[ $PROVIDER == 'SENART' ]]
 then
         website="www.eauxdesenart.com"
 fi
+elif [[ $PROVIDER == 'OLIVET' ]]
+then
+        website="www.eau-olivet.fr"
+fi
 
 loginpage="https://$website/mon-compte-en-ligne/connexion/validation"
 datapage="https://$website/mon-compte-en-ligne/statJData/$dateY/$dateM/$SDEI_CODE"
