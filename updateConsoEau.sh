@@ -74,7 +74,6 @@ then
 elif [[ $PROVIDER == 'SENART' ]]
 then
         website="www.eauxdesenart.com"
-fi
 elif [[ $PROVIDER == 'OLIVET' ]]
 then
         website="www.eau-olivet.fr"
