@@ -44,6 +44,7 @@ SDEI_PASSWD=            # put your password here  ex:  SDEI_PASSWD=totolabrico42
 PROVIDER=SDEI
 #PROVIDER=SOGEST
 #PROVIDER=SENART
+#PROVIDER=SIEVA
 
 # Your virtual device ID in domoticz (see step2 here http://domotique.web2diz.net/?p=138 )
 devicerowid=            #  put your devices idx here   ex : devicerowid=123
@@ -77,6 +78,9 @@ then
 elif [[ $PROVIDER == 'OLIVET' ]]
 then
         website="www.eau-olivet.fr"
+elif [[ $PROVIDER == 'SIEVA' ]]
+then
+        website="www.eau-en-ligne.com"
 fi
 
 loginpage="https://$website/mon-compte-en-ligne/connexion/validation"
