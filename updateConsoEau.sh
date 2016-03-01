@@ -88,7 +88,7 @@ datapage="https://$website/mon-compte-en-ligne/statJData/$dateY/$dateM/$SDEI_COD
 export_file=$workingDIR/$dateY-$dateM.dat
 
 # This first cmd will allow to connect to the site and get the cookiefile
-curl -s $loginpage -c $workingDIR/cookiefile -d "input_mail=$SDEI_EMAIL&input_password=$SDEI_PASSWD" > /dev/null
+curl -s $loginpage -c $workingDIR/cookiefile -d "input_mail=$SDEI_EMAIL&input_password=$SDEI_PASSWD&signin[username]=$SDEI_EMAIL&signin[password]=$SDEI_PASSWD&" > /dev/null
 # This second cmd will download the data
 curl -s $datapage -b $workingDIR/cookiefile > $export_file
 
