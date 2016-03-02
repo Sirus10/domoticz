@@ -39,7 +39,7 @@ dbfile=/home/pi/domoticz/domoticz.db
 export_file=$workingDIR/$dateY-$dateM.dat
 
 # Configuration file check, it will create new one is not exist
-if [ -s $workingDIR/setup_perso- ]
+if [ -s $workingDIR/setup_perso ]
 then
 echo -e "\n Using Configuration from file $workingDIR/setup_perso"
 . $workingDIR/setup_perso
