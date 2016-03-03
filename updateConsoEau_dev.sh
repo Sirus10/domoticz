@@ -94,7 +94,7 @@ elif [[ $PROVIDER == 'SIEVA' ]]
 then
         website="www.eau-en-ligne.com"
 		loginpage="https://$website/security/signin"
-		datapage="https://$website/ma-consommation/DetailConsoChart?year=$dateY&month=$dateM".
+		datapage="https://$website/ma-consommation/DetailConsoChart?year=$dateY&month=$dateM"
 fi
 # Special pages for eau-en-ligne.com
 if [[ ! -n $loginpage ]] 
