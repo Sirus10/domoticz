@@ -12,7 +12,7 @@
 #
 #######################################################################################
 #
-#  PART 0 Common variables
+#  PART 0 Common variables and Conf file 
 #
 #######################################################################################
 # Temp set global C local
@@ -33,29 +33,41 @@ workingDIR=/home/pi/EAU
 sqlfinalfile=$workingDIR/only_new_generated.$dateY-$dateM.sql
 sqlpreviousfile=$workingDIR/previous.generated.$dateY-$dateM.sql
 sqltmpfile=$workingDIR/temps.generated.$dateY-$dateM.sql
-
-
-# SDEI PERSONAL CODE ( see http://domotique.web2diz.net/?p=137)
-SDEI_CODE=              # put your code here      ex:  SDEI_CODE=PLOLKIKU
-SDEI_EMAIL=             # put your email here     ex:  SDEI_EMAIL=toto@tata.com
-SDEI_PASSWD=            # put your password here  ex:  SDEI_PASSWD=totolabrico42
-
-# Set your provider comment/uncomment if needed (default = SDEI)
-PROVIDER=SDEI
-#PROVIDER=SOGEST
-#PROVIDER=SENART
-#PROVIDER=SIEVA
-
-# Your virtual device ID in domoticz (see step2 here http://domotique.web2diz.net/?p=138 )
-devicerowid=            #  put your devices idx here   ex : devicerowid=123
-
 # Database file setup
 dbfile=/home/pi/domoticz/domoticz.db
+# Export file :
+export_file=$workingDIR/$dateY-$dateM.dat
 
-# You can setup a file setup_perso with your personnal settings
+# Configuration file check, it will create new one is not exist
 if [ -s $workingDIR/setup_perso ]
 then
 echo -e "\n Using Configuration from file $workingDIR/setup_perso"
+. $workingDIR/setup_perso
+else 
+echo "#######################################"
+echo " NEED FOR CONFIG FILE CREATION  :      "
+echo "#######################################"
+echo "Personnal code counter number ( see http://domotique.web2diz.net/?p=137) "
+read CODE
+echo "Email adress :  "
+read EMAIL
+echo "Password   : "
+read PASSWD
+echo "Provider  (copy/paste) : "
+echo "SDEI | SOGEST | SENART | SIEVA"
+read PROVIDER
+echo "Your virtual device ID in domoticz (see step2 here http://domotique.web2diz.net/?p=138 ) "
+read devicerowid
+echo "SDEI_CODE=$CODE
+SDEI_EMAIL=$EMAIL
+SDEI_PASSWD=$PASSWD
+PROVIDER=$PROVIDER
+devicerowid=$devicerowid" > setup_perso
+echo "#######################################"
+echo " CONFIG FILE setup_perso CREATED WITH : "
+echo "#######################################"
+cat setup_perso
+echo "#######################################"
 . $workingDIR/setup_perso
 fi
 
@@ -81,11 +93,15 @@ then
 elif [[ $PROVIDER == 'SIEVA' ]]
 then
         website="www.eau-en-ligne.com"
+		loginpage="https://$website/security/signin"
+		datapage="https://$website/ma-consommation/DetailConsoChart?year=$dateY&month=$dateM"
 fi
-
+# Special pages for eau-en-ligne.com
+if [[ ! -n $loginpage ]] 
+then 
 loginpage="https://$website/mon-compte-en-ligne/connexion/validation"
 datapage="https://$website/mon-compte-en-ligne/statJData/$dateY/$dateM/$SDEI_CODE"
-export_file=$workingDIR/$dateY-$dateM.dat
+fi
 
 # This first cmd will allow to connect to the site and get the cookiefile
 curl -s $loginpage -c $workingDIR/cookiefile -d "input_mail=$SDEI_EMAIL&input_password=$SDEI_PASSWD&signin[username]=$SDEI_EMAIL&signin[password]=$SDEI_PASSWD&" > /dev/null
