@@ -62,11 +62,11 @@ echo "SDEI_CODE=$CODE
 SDEI_EMAIL=$EMAIL
 SDEI_PASSWD=$PASSWD
 PROVIDER=$PROVIDER
-devicerowid=$devicerowid" > setup_perso
+devicerowid=$devicerowid" > $workingDIR/setup_perso
 echo "#######################################"
 echo " CONFIG FILE setup_perso CREATED WITH : "
 echo "#######################################"
-cat setup_perso
+cat $workingDIR/setup_perso
 echo "#######################################"
 . $workingDIR/setup_perso
 fi
