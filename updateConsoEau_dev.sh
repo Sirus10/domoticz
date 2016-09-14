@@ -107,7 +107,7 @@ fi
 curl -s $loginpage -c $workingDIR/cookiefile -d "input_mail=$SDEI_EMAIL&input_password=$SDEI_PASSWD&signin[username]=$SDEI_EMAIL&signin[password]=$SDEI_PASSWD&" > /dev/null
 # This second cmd will download the data
 curl -s $datapage -b $workingDIR/cookiefile > $export_file
-cp $export_file $export_file.tmp
+cp $export_file $export_file.tmp_for_support
 
 echo -e "\n $export_file  generated "
 # Remove cookiefiles
