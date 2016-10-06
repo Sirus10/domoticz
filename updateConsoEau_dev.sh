@@ -62,11 +62,11 @@ echo "SDEI_CODE=$CODE
 SDEI_EMAIL=$EMAIL
 SDEI_PASSWD=$PASSWD
 PROVIDER=$PROVIDER
-devicerowid=$devicerowid" > setup_perso
+devicerowid=$devicerowid" > $workingDIR/setup_perso
 echo "#######################################"
 echo " CONFIG FILE setup_perso CREATED WITH : "
 echo "#######################################"
-cat setup_perso
+cat $workingDIR/setup_perso
 echo "#######################################"
 . $workingDIR/setup_perso
 fi
@@ -107,7 +107,6 @@ fi
 curl -s $loginpage -c $workingDIR/cookiefile -d "input_mail=$SDEI_EMAIL&input_password=$SDEI_PASSWD&signin[username]=$SDEI_EMAIL&signin[password]=$SDEI_PASSWD&" > /dev/null
 # This second cmd will download the data
 curl -s $datapage -b $workingDIR/cookiefile > $export_file
-cp $export_file $export_file.tmp_for_support
 
 echo -e "\n $export_file  generated "
 # Remove cookiefiles
@@ -161,7 +160,7 @@ prevVal2=$val2
 
 ### Generation  ###
 
-echo  "DELETE FROM \`Meter_Calendar\` WHERE devicerowid=$devicerowid and date = '$yy-$mm-$dd'; INSERT INTO \`Meter_Calendar\` VALUES ('$devicerowid'," \'$val1\', \'$val2\', \'$yy-$mm-$dd\' ");" >> $sqltmpfile
+echo  "DELETE FROM \`Meter_Calendar\` WHERE devicerowid=$devicerowid and date = '$yy-$mm-$dd'; INSERT INTO \`Meter_Calendar\` (DeviceRowID,Value,Counter,Date) VALUES ('$devicerowid'," \'$val1\', \'$val2\', \'$yy-$mm-$dd\' ");" >> $sqltmpfile
 
 done < $export_file
 
