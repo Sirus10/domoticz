@@ -71,6 +71,7 @@ echo "#######################################"
 . $workingDIR/setup_perso
 fi
 
+
 #######################################
 #
 #  PART 1 get the data
@@ -159,7 +160,7 @@ prevVal2=$val2
 
 ### Generation  ###
 
-echo  "DELETE FROM \`Meter_Calendar\` WHERE devicerowid=$devicerowid and date = '$yy-$mm-$dd'; INSERT INTO \`Meter_Calendar\` VALUES ('$devicerowid'," \'$val1\', \'$val2\', \'$yy-$mm-$dd\' ");" >> $sqltmpfile
+echo  "DELETE FROM \`Meter_Calendar\` WHERE devicerowid=$devicerowid and date = '$yy-$mm-$dd'; INSERT INTO \`Meter_Calendar\` (DeviceRowID,Value,Counter,Date) VALUES ('$devicerowid'," \'$val1\', \'$val2\', \'$yy-$mm-$dd\' ");" >> $sqltmpfile
 
 done < $export_file
 
