@@ -47,14 +47,14 @@ else
 echo "#######################################"
 echo " NEED FOR CONFIG FILE CREATION  :      "
 echo "#######################################"
-echo "Personnal code counter number ( see http://domotique.web2diz.net/?p=137) "
+echo "Personnal counter number ( see http://domotique.web2diz.net/?p=137) "
 read CODE
 echo "Email adress :  "
 read EMAIL
 echo "Password   : "
 read PASSWD
 echo "Provider  (copy/paste) : "
-echo "SDEI | SOGEST | SENART | SIEVA"
+echo "SDEI | SOGEST | SEERC | SOBEP | EEF | SENART | OLIVET | SIEVA | SEE"
 read PROVIDER
 echo "Your virtual device ID in domoticz (see step2 here http://domotique.web2diz.net/?p=138 ) "
 read devicerowid
@@ -78,30 +78,29 @@ fi
 #
 ######################################
 echo -e "\n - PART 1 Get the data from website for $dateY-$dateM"
-if [[ $PROVIDER == 'SDEI' ]]
-then
-        website="www.lyonnaise-des-eaux.fr"
-elif [[ $PROVIDER == 'SOGEST' ]]
-then
-        website="www.sogest.info"
-elif [[ $PROVIDER == 'SENART' ]]
-then
-        website="www.eauxdesenart.com"
-elif [[ $PROVIDER == 'OLIVET' ]]
-then
-        website="www.eau-olivet.fr"
-elif [[ $PROVIDER == 'SIEVA' ]]
-then
-        website="www.eau-en-ligne.com"
-		loginpage="https://$website/security/signin"
-		datapage="https://$website/ma-consommation/DetailConsoChart?year=$dateY&month=$dateM"
+
+if   [[ $PROVIDER == 'SDEI' ]]		then website="www.toutsurmoneau.fr"
+elif [[ $PROVIDER == 'SOGEST' ]]	then website="www.toutsurmoneau.fr"
+elif [[ $PROVIDER == 'SEERC' ]]		then website="www.toutsurmoneau.fr"
+elif [[ $PROVIDER == 'SOBEP' ]]		then website="www.toutsurmoneau.fr"
+elif [[ $PROVIDER == 'EEF' ]]		  then website="www.toutsurmoneau.fr"
+elif [[ $PROVIDER == 'SUEZ' ]]		then website="www.toutsurmoneau.fr"
+elif [[ $PROVIDER == 'SENART' ]]	then website="www.eauxdesenart.com"
+elif [[ $PROVIDER == 'OLIVET' ]] 	then website="www.eau-olivet.fr"
+elif [[ $PROVIDER == 'SIEVA' ]] 	then website="www.eau-en-ligne.com"
+elif [[ $PROVIDER == 'SEE' ]] 		then website="www.eauxdelessonne.com"
+
+loginpage="https://$website/security/signin"
+datapage="https://$website/ma-consommation/DetailConsoChart?year=$dateY&month=$dateM"
 fi
+
 # Special pages for eau-en-ligne.com
 if [[ ! -n $loginpage ]] 
 then 
 loginpage="https://$website/mon-compte-en-ligne/connexion/validation"
 datapage="https://$website/mon-compte-en-ligne/statJData/$dateY/$dateM/$SDEI_CODE"
 fi
+
 
 # This first cmd will allow to connect to the site and get the cookiefile
 curl -s $loginpage -c $workingDIR/cookiefile -d "input_mail=$SDEI_EMAIL&input_password=$SDEI_PASSWD&signin[username]=$SDEI_EMAIL&signin[password]=$SDEI_PASSWD&" > /dev/null
