@@ -47,14 +47,14 @@ else
 echo "#######################################"
 echo " NEED FOR CONFIG FILE CREATION  :      "
 echo "#######################################"
-echo "Personnal code counter number ( see http://domotique.web2diz.net/?p=137) "
+echo "Personnal counter number ( see http://domotique.web2diz.net/?p=137) "
 read CODE
 echo "Email adress :  "
 read EMAIL
 echo "Password   : "
 read PASSWD
 echo "Provider  (copy/paste) : "
-echo "SDEI | SOGEST | SENART | SIEVA"
+echo "SDEI | SOGEST | SENART | SIEVA | SEE"
 read PROVIDER
 echo "Your virtual device ID in domoticz (see step2 here http://domotique.web2diz.net/?p=138 ) "
 read devicerowid
