@@ -54,7 +54,7 @@ read EMAIL
 echo "Password   : "
 read PASSWD
 echo "Provider  (copy/paste) : "
-echo "SDEI | SOGEST | SENART | SIEVA | SEE"
+echo "SDEI | SOGEST | SEERC | SOBEP | EEF | SENART | OLIVET | SIEVA | SEE"
 read PROVIDER
 echo "Your virtual device ID in domoticz (see step2 here http://domotique.web2diz.net/?p=138 ) "
 read devicerowid
@@ -79,8 +79,12 @@ fi
 ######################################
 echo -e "\n - PART 1 Get the data from website for $dateY-$dateM"
 
-if   [[ $PROVIDER == 'SDEI' ]]		then website="www.lyonnaise-des-eaux.fr"
-elif [[ $PROVIDER == 'SOGEST' ]]	then website="www.sogest.info"
+if   [[ $PROVIDER == 'SDEI' ]]		then website="www.toutsurmoneau.fr"
+elif [[ $PROVIDER == 'SOGEST' ]]	then website="www.toutsurmoneau.fr"
+elif [[ $PROVIDER == 'SEERC' ]]		then website="www.toutsurmoneau.fr"
+elif [[ $PROVIDER == 'SOBEP' ]]		then website="www.toutsurmoneau.fr"
+elif [[ $PROVIDER == 'EEF' ]]		  then website="www.toutsurmoneau.fr"
+elif [[ $PROVIDER == 'SUEZ' ]]		then website="www.toutsurmoneau.fr"
 elif [[ $PROVIDER == 'SENART' ]]	then website="www.eauxdesenart.com"
 elif [[ $PROVIDER == 'OLIVET' ]] 	then website="www.eau-olivet.fr"
 elif [[ $PROVIDER == 'SIEVA' ]] 	then website="www.eau-en-ligne.com"
@@ -96,6 +100,7 @@ then
 loginpage="https://$website/mon-compte-en-ligne/connexion/validation"
 datapage="https://$website/mon-compte-en-ligne/statJData/$dateY/$dateM/$SDEI_CODE"
 fi
+
 
 # This first cmd will allow to connect to the site and get the cookiefile
 curl -s $loginpage -c $workingDIR/cookiefile -d "input_mail=$SDEI_EMAIL&input_password=$SDEI_PASSWD&signin[username]=$SDEI_EMAIL&signin[password]=$SDEI_PASSWD&" > /dev/null
