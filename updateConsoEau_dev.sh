@@ -78,24 +78,18 @@ fi
 #
 ######################################
 echo -e "\n - PART 1 Get the data from website for $dateY-$dateM"
-if [[ $PROVIDER == 'SDEI' ]]
-then
-        website="www.lyonnaise-des-eaux.fr"
-elif [[ $PROVIDER == 'SOGEST' ]]
-then
-        website="www.sogest.info"
-elif [[ $PROVIDER == 'SENART' ]]
-then
-        website="www.eauxdesenart.com"
-elif [[ $PROVIDER == 'OLIVET' ]]
-then
-        website="www.eau-olivet.fr"
-elif [[ $PROVIDER == 'SIEVA' ]]
-then
-        website="www.eau-en-ligne.com"
-		loginpage="https://$website/security/signin"
-		datapage="https://$website/ma-consommation/DetailConsoChart?year=$dateY&month=$dateM"
+
+if   [[ $PROVIDER == 'SDEI' ]]		then website="www.lyonnaise-des-eaux.fr"
+elif [[ $PROVIDER == 'SOGEST' ]]	then website="www.sogest.info"
+elif [[ $PROVIDER == 'SENART' ]]	then website="www.eauxdesenart.com"
+elif [[ $PROVIDER == 'OLIVET' ]] 	then website="www.eau-olivet.fr"
+elif [[ $PROVIDER == 'SIEVA' ]] 	then website="www.eau-en-ligne.com"
+elif [[ $PROVIDER == 'SEE' ]] 		then website="www.eauxdelessonne.com"
+
+loginpage="https://$website/security/signin"
+datapage="https://$website/ma-consommation/DetailConsoChart?year=$dateY&month=$dateM"
 fi
+
 # Special pages for eau-en-ligne.com
 if [[ ! -n $loginpage ]] 
 then 
