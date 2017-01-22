@@ -141,7 +141,7 @@ curl -L $loginpage -A "$agent" -s \
 -d "_username=$SDEI_EMAIL&_password=$SDEI_PASSWD&_csrf_token=$csrftoken&signin[username]=$SDEI_EMAIL&signin[password]" |grep "Connexion en cours" > /dev/nul
 if [[ "$?" == "0" ]] then
  echo "  - LOGIN OK" 
-# else 
+# else  
 # echo "  - LOGIN NOT OK !! $ERRORMSG" 
 fi
 
