@@ -142,7 +142,7 @@ curl -L $loginpage -A "$agent" -s \
 if [[ "$?" == "0" ]] then
  echo "  - LOGIN OK" 
 else 
- echo "  - LOGIN NOT OK !! $ERRORMSG" 
+# echo "  - LOGIN NOT OK !! $ERRORMSG" 
 fi
 
 #############  3 GET DATA  #################
