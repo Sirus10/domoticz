@@ -138,7 +138,7 @@ fi
 curl -L $loginpage -A "$agent" -s \
 -c $workingDIR/cookiefile \
 -b $workingDIR/cookiefile \
--d "_username=$SDEI_EMAIL&_password=$SDEI_PASSWD&_csrf_token=$csrftoken&signin[username]=$SDEI_EMAIL&signin[password]"  |grep -e "se déconnecter" -e "Connexion en cours" > /dev/nul
+-d "_username=$SDEI_EMAIL&_password=$SDEI_PASSWD&_csrf_token=$csrftoken&signin[username]=$SDEI_EMAIL&signin[password]"  |grep -e "se déconnecter" -e "Connexion en cours" > /dev/null
 CR=$?
 if [[ "$CR" == "0" ]] then
  echo "  - LOGIN OK" 
