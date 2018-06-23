@@ -14,7 +14,7 @@
 # EX : ./alert_gel Montpellier
 #
 # Daily scheduling in crontab : 
-# 30 7 * * *  /root/scripts/gel.sh Toulouse > /tmp/probal_gelCaraman.log
+# 30 7 * * *  /root/scripts/alert_gel.sh Toulouse > /tmp/probal_gelToulouse.log
 #
 #######################################################################################
 # Setup the default city, 
