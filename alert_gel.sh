@@ -24,7 +24,7 @@ CITY=Toulouse  # Default city is $1 not set
 tempAler=3 
 APIKEY=your_wunderground_apiKEY
 recipient=youremail@mail.com
-sender="From: Manu <sender@pi3.com>"
+sender="From: Pedro <sender@pi3.com>"
 
 if [ "$1" != '' ] ; then
  CITY=$1
