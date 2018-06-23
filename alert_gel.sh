@@ -39,7 +39,7 @@ echo "############       Risque de gel      ###############"
 echo "##########   "`date`"  ##########"
 
 echo " Temp mini dans les 10 jours a venir : "
-tempsmini=`/usr/local/bin/xml_grep  'low/celsius' /tmp/weather$CITY-10D.out --text_only`
+tempsmini=`/usr/bin/xml_grep  'low/celsius' /tmp/weather$CITY-10D.out --text_only`
 i=0
 sentmail=0
 
