@@ -21,7 +21,7 @@
 CITY=Toulouse  # Default city is $1 not set
 # Alert in case of lower temp than tempAler.
 # If you wahtn be alerte if tempterature lwill be lower than 3° set : tempAler=3
-tempAler=3 
+tempAlert=3 
 APIKEY=your_wunderground_apiKEY
 recipient=youremail@mail.com
 sender="From: Pedro <sender@pi3.com>"
@@ -46,7 +46,7 @@ sentmail=0
 for t in $tempsmini; do
         echo "Dans $i jour(s) : $t  °C  à $CITY"
         #val=$val"Dans $i jours : $t °C <br>\n"
-        if [ $t -lt 3 ]
+        if [ $t -lt $tempAlert ]
         then
                 echo "--------------------------->   Risque de gel dans $i jour(s) ! "
                 alert=" -->  <b> Risque de gel dans $i jours ! </b>"
