@@ -1,4 +1,20 @@
 #/bin/sh
+########################################################################################
+#  This script will collect rain probability
+#  for the next xx comming days 
+#
+# Site    : http://domotique.web2diz.net/
+# Details : http://domotique.web2diz.net/probabilite-pluie-dans-domoticz/
+# Source  : https://github.com/Sirus10/domoticz/blob/master/get_rain_probability_darksky.sh
+# License : CC BY-SA 4.0
+#
+#  Usage:
+#  get_rain_probability_darksky.sh
+#
+# Hourly scheduling in crontab : 
+# 10 * * * *  /root/scripts/get_rain_probability_darksky.sh > /tmp/probal_rain.log
+#
+#######################################################################################
 # SETUP START
 LATLON="41.540970,0.796642"  
 APIKEY="put your api key here" #see https://darksky.net/dev to get one for free
