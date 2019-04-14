@@ -4,7 +4,7 @@
 CITY=Paris
 tempAler=3 # alert in case of lower temp than tempAler
 APIKEY="put api key here"
-recipient=ecoindre@gmail.com
+recipient=putyouremailhere@tata.net
 sender="From: YourName <YourName@pi.com>"
 LATLON="41.540970,1.96642"  # Update with the corrdinate you want
 
