@@ -45,23 +45,18 @@ then
     print('Lecture capteur : '..val.. 'volt  mauvaise lecture' ); 
    else 
 	vol= (val-valMin)/(valMAX-valMin)*volMAX; 	-- un peu de math...
-	vol = round(vol,2); 						-- arrondi pour affichage
+	vol = round(vol,2); 			 	-- arrondi pour affichage
 	
-	-- pour lisser la courbe on va faire une courbe de tendence 
-	-- moyenne sur les deux derniere meusure 
-	volPrec=tonumber(otherdevices_svalues['CuveAvg']); 
-	volAvg=(vol+volPrec)/2;
-	volAvg = round(volAvg,2);
-	prtagePein=round(volAvg/volMAX*100,1);  		-- calcul du remplissage en % 
+
+	prtagePein=round(vol/volMAX*100,1);  		-- calcul du remplissage en % 
 	
 	
 	 -- this is ok for updating multiple devices see https://www.domoticz.com/forum/viewtopic.php?t=17711#p196832
 	commandArray[#commandArray+1] = {['UpdateDevice'] = '5780|1|'..prtagePein}  -- mise a jour du capteur % 'Niveau Eau' qui a pour idx 5780 pour moi
 	commandArray[#commandArray+1] = {['UpdateDevice'] = '6620|1|'..vol}			-- mise a jour du capteur Litre 'Cuve' qui a pour idx 6620 pour moi
---	commandArray[#commandArray+1] = {['UpdateDevice'] = '6678|1|'..volAvg}		-- mise a jour du capteur Litre 'Cuve AVG' qui a pour idx 6678 pour moi
+
 
 	print('Niveau eau meusurée : '..(val)..' |  Cuve pleine à '..prtagePein..'% = '..vol..' L ')   
-	print('Niveau eau meusurée : '..(val)..' |  Cuve pleine à '..prtagePein..'% = '..volAvg..' L (AVG)')  
    end 	
 
 end
