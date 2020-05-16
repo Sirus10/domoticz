@@ -31,7 +31,7 @@ end
 
 -- Si le cpteur 'JardinCuve' à été mis a jour il y a moins de 120s 
 -- et que le capteur 'Niveau Eau' a été mis a jour il y a plus de 130s
-if ( timedifference(otherdevices_lastupdate['JardinCuve']) < 120 and timedifference(otherdevices_lastupdate['Niveau Eau']) > 130 or true)
+if ( timedifference(otherdevices_lastupdate['JardinCuve']) < 120 and timedifference(otherdevices_lastupdate['Niveau Eau']) > 130 )
 then
     val = tonumber(otherdevices_svalues['JardinCuve'])*10; 
 	-- debut configuration de la cuve à addapteur à votre cuve
